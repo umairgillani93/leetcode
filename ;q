@@ -1,0 +1,42 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main() {
+	int t;
+	cin >> t;
+	while (t--) {
+		int n;
+		cin >> n;
+		vector<int> a(n);
+		for (int i = 0; i < n; i++) {
+			cin >> a[i];
+		}	
+		int curr = 1, best = 1, worst = 1;
+		for (int i = 0; i < n - 1; i++) {
+			if (a[i + 1] - a[i] > 2) {
+				curr = 1;
+			}
+			else {
+				curr++;
+			}
+			best = max(best, curr);
+		}
+
+		int new_curr = 1;
+
+		for (int i = 0; i < n - 1; i++) {
+			if (a[i + 1] - a[i] <= 2) {
+				new_curr++;
+			}
+			else {
+				new_curr = 1;
+			}
+			worst = min(worst, new_curr);
+		}
+		cout << worst << " " << best << '\n';
+		
+	}
+	return 0;
+}
+
